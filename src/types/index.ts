@@ -16,6 +16,17 @@ export interface EducationItem {
   logo?: string
 }
 
+export interface ProjectDetailSection {
+  title: string
+  content: string
+  bullets?: string[]
+}
+
+export interface ProjectDetail {
+  headline: string
+  sections: ProjectDetailSection[]
+}
+
 export interface ProjectItem {
   id: string
   title: string
@@ -24,6 +35,8 @@ export interface ProjectItem {
   technologies: string[]
   liveUrl?: string
   githubUrl?: string
+  detail?: ProjectDetail
+  visual?: string
 }
 
 export interface GalleryItem {

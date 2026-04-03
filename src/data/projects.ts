@@ -3,11 +3,49 @@ import type { ProjectItem } from '@/types'
 export const projects: ProjectItem[] = [
   {
     id: 'proj-1',
-    title: 'BI Platform Migration',
+    title: 'Tech Stack Modernization',
     description:
-      'Led end-to-end migration from Dundas (C# backend) to Tableau with row-level security and full SOC compliance. Re-architected every client-facing dashboard while simultaneously migrating the data warehouse from PostgreSQL to Databricks, unlocking scalable query performance across a rapidly growing data lake.',
+      'Transforming legacy reporting into a high-performance, self-service intelligence engine.',
     image: '/images/projects/bi-migration.jpg',
-    technologies: ['Tableau', 'Databricks', 'PostgreSQL', 'SQL', 'C#'],
+    technologies: ['Tableau', 'Databricks', 'PostgreSQL', 'SQL', 'C#', 'Dundas'],
+    visual: 'tech-stack',
+    detail: {
+      headline: 'Scaling Certainty: A Full-Stack BI Infrastructure Modernization',
+      sections: [
+        {
+          title: 'The Challenge',
+          content: 'Our legacy analytics environment was a "maintenance-heavy" ecosystem built on Dundas BI. With four separate instances to manage, deployments were slow, and Row-Level Security (RLS) was a manual, bug-prone process. Furthermore, customer reporting relied on unencrypted Excel files sent via email — a method that was neither secure nor scalable for a growing enterprise.',
+        },
+        {
+          title: 'The Solution: A Unified, Embedded Intelligence Engine',
+          content: 'I led the migration of our entire dashboarding suite to Tableau, underpinned by a high-performance Databricks backend. This wasn\'t just a visualization change; it was a complete re-engineering of how we secure and deliver data.',
+        },
+        {
+          title: 'The Engineering Strategy',
+          content: '',
+          bullets: [
+            'Unified Instance Architecture — Consolidated four disparate environments into a single, unified Tableau instance. By implementing a structured folder hierarchy, we achieved significantly faster deployment cycles and eliminated the overhead of cross-instance maintenance.',
+            'Automated Data Delivery Service — Replaced insecure email reporting with a scalable "Data-as-a-Service" pipeline. Used Databricks Jobs and Python scripting to generate extracts as views, systematically categorize them, and deliver them to S3/SFTP buckets at custom intervals.',
+            'Secure Embedded Analytics — Implemented a seamless "Productized" feel by using iframes to embed Tableau dashboards directly into our web platform.',
+            'Dynamic Access Layer — Engineered a sophisticated security bridge between our UI and Tableau. By passing user attributes from the application layer down to Tableau, we automated row-level filtering, ensuring stakeholders only see the data they are authorized to access.',
+          ],
+        },
+        {
+          title: 'The Impact',
+          content: '',
+          bullets: [
+            'Operational Velocity — Transitioned from manual, weekly report "pushes" to a fully automated, systematic delivery engine that scales with our customer base.',
+            'Enhanced Security Posture — Eliminated the risk of unencrypted Excel attachments by moving all external reporting to secure SFTP/S3 endpoints and encrypted embedded views.',
+            'Developer Efficiency — Reduced the "maintenance tax" of managing multiple BI environments, allowing the team to focus on building new, interactive analytical features rather than troubleshooting RLS bugs.',
+            'Professional UX — Provided a "Single Source of Truth" within our own website, giving stakeholders clean, fresh, and interactive analytics without ever leaving the product.',
+          ],
+        },
+        {
+          title: 'The Bottom Line',
+          content: 'By moving away from brittle, manual processes and embracing a modern, scriptable data stack, we transformed a legacy reporting burden into a secure, automated, and embedded product feature.',
+        },
+      ],
+    },
   },
   {
     id: 'proj-2',

@@ -1,14 +1,24 @@
-import { useRef } from 'react'
+import { useRef, useState, useCallback } from 'react'
 import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
+import { AnimatePresence } from 'framer-motion'
 import SectionHeading from '@/components/ui/SectionHeading'
 import Badge from '@/components/ui/Badge'
+import ProjectDetailOverlay from '@/components/ui/ProjectDetailOverlay'
+import TechStackVisual from '@/components/visuals/TechStackVisual'
 import { projects } from '@/data/projects'
 import { ArrowUpRight, ExternalLink } from 'lucide-react'
 
 export default function Projects() {
   const containerRef = useRef<HTMLDivElement>(null)
   const trackRef = useRef<HTMLDivElement>(null)
+  const [activeProjectId, setActiveProjectId] = useState<string | null>(null)
+
+  const activeProject = activeProjectId
+    ? projects.find((p) => p.id === activeProjectId)
+    : undefined
+
+  const handleClose = useCallback(() => setActiveProjectId(null), [])
 
   useGSAP(() => {
     if (!trackRef.current || !containerRef.current) return
@@ -48,14 +58,21 @@ export default function Projects() {
           {projects.map((project) => (
             <div
               key={project.id}
-              className="group flex-shrink-0 w-[420px] rounded-2xl border border-border bg-surface p-6 shadow-soft transition-all hover:shadow-elevated hover:border-accent/30"
+              className={`group flex-shrink-0 w-[420px] rounded-2xl border border-border bg-surface p-6 shadow-soft transition-all hover:shadow-elevated hover:border-accent/30 ${project.detail ? 'cursor-pointer' : ''}`}
+              onClick={() => project.detail && setActiveProjectId(project.id)}
             >
-              {/* Image placeholder */}
-              <div className="mb-5 flex h-52 items-center justify-center rounded-xl bg-bg transition-transform group-hover:scale-[1.02]">
-                <span className="text-sm text-text-tertiary">
-                  Project Preview
-                </span>
-              </div>
+              {/* Visual / Placeholder */}
+              {project.visual === 'tech-stack' ? (
+                <div className="mb-5 transition-transform group-hover:scale-[1.02]">
+                  <TechStackVisual compact />
+                </div>
+              ) : (
+                <div className="mb-5 flex h-52 items-center justify-center rounded-xl bg-bg transition-transform group-hover:scale-[1.02]">
+                  <span className="text-sm text-text-tertiary">
+                    Project Preview
+                  </span>
+                </div>
+              )}
 
               <h3 className="mb-2 text-xl font-bold text-text-primary">
                 {project.title}
@@ -99,6 +116,15 @@ export default function Projects() {
           <div className="flex-shrink-0 w-[100px]" />
         </div>
       </div>
+      {/* Detail overlay */}
+      <AnimatePresence>
+        {activeProject?.detail && (
+          <ProjectDetailOverlay
+            project={activeProject}
+            onClose={handleClose}
+          />
+        )}
+      </AnimatePresence>
     </section>
   )
 }
