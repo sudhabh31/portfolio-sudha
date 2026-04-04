@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
 
 const TEAL = '#0F766E'
 const GREEN = '#22C55E'

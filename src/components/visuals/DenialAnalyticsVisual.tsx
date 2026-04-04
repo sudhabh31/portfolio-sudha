@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 const PURPLE = '#6B4C9A'
 const PURPLE_LIGHT = '#8B6DB5'
