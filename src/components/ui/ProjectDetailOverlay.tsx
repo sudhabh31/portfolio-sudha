@@ -5,6 +5,7 @@ import type { ProjectItem } from '@/types'
 import Badge from '@/components/ui/Badge'
 import TechStackVisual from '@/components/visuals/TechStackVisual'
 import DenialAnalyticsVisual from '@/components/visuals/DenialAnalyticsVisual'
+import ConversationalBIVisual from '@/components/visuals/ConversationalBIVisual'
 
 interface ProjectDetailOverlayProps {
   project: ProjectItem
@@ -17,6 +18,8 @@ function ProjectVisual({ visual }: { visual?: string }) {
       return <TechStackVisual />
     case 'denial-analytics':
       return <DenialAnalyticsVisual />
+    case 'conversational-bi':
+      return <ConversationalBIVisual />
     default:
       return null
   }

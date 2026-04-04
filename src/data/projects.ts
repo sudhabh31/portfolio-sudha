@@ -93,11 +93,48 @@ export const projects: ProjectItem[] = [
   },
   {
     id: 'proj-3',
-    title: 'NLP Semantic Layer',
+    title: 'Conversational BI',
     description:
-      'Built an NLP-powered semantic layer in Databricks with a customized chatbot interface, enabling non-technical users to generate complete reports using natural language Q&A and reducing dependency on the BI team for routine analytics.',
+      'Engineering the conversational intelligence layer: Translating complex enterprise datasets into intuitive, natural-language insights via an NLP-powered semantic chatbot.',
     image: '/images/projects/nlp-semantic.jpg',
-    technologies: ['Databricks', 'Python', 'NLP', 'RAG'],
+    technologies: ['Databricks', 'Python', 'NLP', 'LLM', 'Genie', 'SQL'],
+    visual: 'conversational-bi',
+    detail: {
+      headline: 'Conversational BI',
+      sections: [
+        {
+          title: 'The Challenge',
+          content: 'Even the most powerful dashboards have a "usability ceiling." Stakeholders often struggle to find exactly the right filter or slice of data they need, leading to an endless cycle of ad-hoc requests sent to the data team. The challenge was to democratize access to our data—moving away from "navigating a dashboard" to simply "asking a question."',
+        },
+        {
+          title: 'The Solution: The Intelligent Semantic Layer',
+          content: 'I architected and deployed an NLP-powered semantic layer that serves as the "brain" for our analytics suite. By mapping our underlying data models in Databricks to a conversational interface, I created an environment where non-technical users can interact with complex financial metrics using plain English.',
+        },
+        {
+          title: 'The Engineering Strategy',
+          content: '',
+          bullets: [
+            'Semantic Modeling — I designed a structured metadata layer that abstracts complex SQL joins and technical schema names into business-friendly terminology (e.g., mapping rev_adj_amt_v2 to "Revenue Adjustment").',
+            'The "Genie" Chatbot Integration — I implemented a conversational interface that interprets natural language, translates intent into structured queries, and returns accurate, visualized answers in real-time.',
+            'Context-Aware Architecture — I engineered the layer to maintain context during multi-turn conversations, allowing users to drill down or pivot (e.g., "Show me automations for last month," followed by "Now by Payer") without restating the parameters.',
+            'AI-Augmented Prompting — By utilizing Large Language Models to interpret user intent, I ensured that the system could handle ambiguous queries and provide the most relevant data cuts automatically.',
+          ],
+        },
+        {
+          title: 'The Impact',
+          content: '',
+          bullets: [
+            'Self-Service at Scale — Significantly reduced the volume of ad-hoc data requests, allowing the data team to focus on high-impact infrastructure projects rather than manual report generation.',
+            'Democratized Insights — Empowered non-technical leadership to extract their own insights, leading to a dramatic increase in monthly active users on the analytics platform.',
+            'Reduced Time-to-Insight — Users moved from "searching for a dashboard" to "receiving an answer" in seconds, drastically speeding up decision-making for our clinical and financial partners.',
+          ],
+        },
+        {
+          title: 'The Bottom Line',
+          content: 'I didn\'t just build a chatbot; I built a conversational interface for the enterprise. By architecting a robust semantic layer, I transformed the data platform from a static resource into a collaborative, intelligent partner that meets stakeholders in natural conversation.',
+        },
+      ],
+    },
   },
   {
     id: 'proj-4',

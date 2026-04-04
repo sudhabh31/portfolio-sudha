@@ -6,6 +6,7 @@ import Badge from '@/components/ui/Badge'
 import ProjectDetailOverlay from '@/components/ui/ProjectDetailOverlay'
 import TechStackVisual from '@/components/visuals/TechStackVisual'
 import DenialAnalyticsVisual from '@/components/visuals/DenialAnalyticsVisual'
+import ConversationalBIVisual from '@/components/visuals/ConversationalBIVisual'
 import { projects } from '@/data/projects'
 import { ArrowUpRight, ExternalLink } from 'lucide-react'
 
@@ -47,6 +48,10 @@ export default function Projects() {
                 ) : project.visual === 'denial-analytics' ? (
                   <div className="mb-5 transition-transform group-hover:scale-[1.02]">
                     <DenialAnalyticsVisual compact />
+                  </div>
+                ) : project.visual === 'conversational-bi' ? (
+                  <div className="mb-5 transition-transform group-hover:scale-[1.02]">
+                    <ConversationalBIVisual compact />
                   </div>
                 ) : (
                   <div className="mb-5 flex h-52 items-center justify-center rounded-xl bg-bg transition-transform group-hover:scale-[1.02]">
