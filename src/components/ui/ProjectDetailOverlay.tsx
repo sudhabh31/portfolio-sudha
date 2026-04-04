@@ -7,6 +7,7 @@ import TechStackVisual from '@/components/visuals/TechStackVisual'
 import DenialAnalyticsVisual from '@/components/visuals/DenialAnalyticsVisual'
 import ConversationalBIVisual from '@/components/visuals/ConversationalBIVisual'
 import DataIntegrityVisual from '@/components/visuals/DataIntegrityVisual'
+import InnovationLabVisual from '@/components/visuals/InnovationLabVisual'
 
 interface ProjectDetailOverlayProps {
   project: ProjectItem
@@ -23,6 +24,8 @@ function ProjectVisual({ visual }: { visual?: string }) {
       return <ConversationalBIVisual />
     case 'data-integrity':
       return <DataIntegrityVisual />
+    case 'innovation-lab':
+      return <InnovationLabVisual />
     default:
       return null
   }

@@ -126,11 +126,46 @@ export const projects: ProjectItem[] = [
   },
   {
     id: 'proj-4',
-    title: 'AI-Augmented Dev Workflow',
+    title: 'The Collaborative Innovation Lab',
     description:
-      'Pioneered an AI-augmented development workflow using Cursor and Claude to deliver full-stack Databricks Apps (Python/React/D3.js), compressing delivery timelines from weeks to days. Authored living architecture documentation grounding AI-assisted development with company context.',
+      'Co-architecting an AI-augmented Rapid Innovation Lab: Collaborating on a Python/React stack to compress development cycles and deliver weekly feature updates to internal stakeholders.',
     image: '/images/projects/ai-workflow.jpg',
-    technologies: ['Python', 'React', 'D3.js', 'Databricks Apps', 'AI'],
+    technologies: ['Python', 'React', 'D3.js', 'Cursor', 'Claude', 'Databricks'],
+    visual: 'innovation-lab',
+    detail: {
+      headline: 'The Collaborative Innovation Lab',
+      sections: [
+        {
+          title: 'The Challenge',
+          content:
+            'Our standard BI infrastructure was built for stability, but it struggled to keep pace with the rapid, "what-if" questions from our internal stakeholders. To bridge this gap, a small, specialized squad of us set out to build a high-fidelity "Shadow Suite"—a development environment where we could prototype complex D3 visualizations and data features faster than traditional BI tools would allow.',
+        },
+        {
+          title: 'The Solution: An AI-Augmented, Full-Stack Sandbox',
+          content:
+            'I partnered with a lead analyst to architect a code-first development workflow that prioritized speed and accuracy. By integrating Cursor (AI-native IDE) with a Python/FastAPI backend and a React/D3 frontend, our team created a rapid prototyping engine powered by Claude and connected directly to our Databricks lakehouse.',
+        },
+        {
+          title: 'The Team-Driven Strategy',
+          content: '',
+          bullets: [
+            'SME-Led Logic & Validation — Within our squad, my primary responsibility was the "Accuracy Layer." While my teammates leveraged AI to scaffold React components and D3 UI elements, I engineered the specific SQL checks and numeric breakpoints required to ensure every visualization matched our production-grade enterprise data.',
+            'Modernized Pair-Programming — We utilized Cursor as our primary environment, using Claude as a collaborative partner to handle boilerplate coding. This allowed our team to focus on high-level architecture and complex data logic rather than manual syntax.',
+            'The "Live-Reload" Workflow — By running Uvicorn and npm-dev directly within the IDE, we established a real-time feedback loop. This allowed us to collaborate on data changes and UI updates instantly, seeing the results of our Databricks queries reflected in the frontend in seconds.',
+            'Direct Lakehouse Integration — Our team ensured a seamless connection between the local dev environment and Databricks, enabling us to validate new features against production-scale data throughout the sprint.',
+          ],
+        },
+        {
+          title: 'The Operational Impact',
+          content: '',
+          bullets: [
+            'High-Impact Weekly Cadence — By moving away from legacy BI constraints, our team successfully transitioned from a sluggish request model to delivering substantial, feature-rich updates every week.',
+            'Collaborative Proof-of-Concepts — This workflow allowed us to present "product-ready" demos to leadership, providing a level of interactivity and detail that was previously out of reach for internal projects.',
+            'SME-Verified Innovation — By acting as the technical "Gatekeeper," I ensured that our team\'s AI-augmented speed never came at the cost of the clinical or financial accuracy required for healthcare data.',
+          ],
+        },
+      ],
+    },
   },
   {
     id: 'proj-5',
