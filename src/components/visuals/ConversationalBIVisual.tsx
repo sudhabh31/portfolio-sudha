@@ -58,8 +58,123 @@ export default function ConversationalBIVisual({ compact = false }: { compact?: 
 
   const conv = CONVERSATION[step]
 
+  if (compact) {
+    return (
+      <div className="relative rounded-xl bg-bg overflow-hidden h-52">
+        <svg viewBox="0 0 320 160" className="h-full w-full p-3" xmlns="http://www.w3.org/2000/svg">
+
+          {/* Background card */}
+          <rect x={4} y={4} width={312} height={152} rx={10} fill="white" stroke="#E2E8F0" strokeWidth={0.8} />
+
+          {/* Header bar */}
+          <rect x={4} y={4} width={312} height={24} rx={10} fill="#F8FAFC" />
+          <rect x={4} y={20} width={312} height={8} fill="#F8FAFC" />
+          <circle cx={20} cy={16} r={6} fill={PURPLE} opacity={0.15} />
+          <text x={20} y={18.5} textAnchor="middle" fontSize={8} fill={PURPLE} fontWeight={700}>G</text>
+          <text x={34} y={19} fontSize={8.5} fontWeight={600} fontFamily="Inter, sans-serif" fill={DARK}>
+            Genie Assistant
+          </text>
+          <circle cx={296} cy={16} r={3.5} fill={GREEN} />
+
+          {/* User question bubble */}
+          <AnimatePresence mode="wait">
+            <motion.g
+              key={`cq-${step}`}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.3 }}
+            >
+              <rect x={80} y={36} width={224} height={26} rx={13} fill={PURPLE} opacity={0.1} />
+              <rect x={80} y={36} width={224} height={26} rx={13} fill="none" stroke={PURPLE} strokeWidth={0.6} opacity={0.3} />
+              <text x={94} y={53} fontSize={8} fontFamily="Inter, sans-serif" fill={PURPLE} fontWeight={500}>
+                {conv.question}
+              </text>
+            </motion.g>
+          </AnimatePresence>
+
+          {/* AI response with mini chart */}
+          <AnimatePresence mode="wait">
+            <motion.g
+              key={`ca-${step}`}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.2, duration: 0.3 }}
+            >
+              {/* Response bubble */}
+              <rect x={12} y={70} width={200} height={36} rx={12} fill={GREEN} opacity={0.06} />
+              <rect x={12} y={70} width={200} height={36} rx={12} fill="none" stroke={GREEN} strokeWidth={0.5} opacity={0.3} />
+              <circle cx={26} cy={84} r={7} fill={PURPLE} opacity={0.12} />
+              <text x={26} y={87} textAnchor="middle" fontSize={8} fill={PURPLE} fontWeight={700}>G</text>
+              <text x={40} y={86} fontSize={7} fontFamily="Inter, sans-serif" fill={DARK}>
+                {conv.answer.slice(0, 38)}
+              </text>
+              <text x={40} y={98} fontSize={7} fontFamily="Inter, sans-serif" fill={DARK}>
+                {conv.answer.slice(38, 70)}
+              </text>
+
+              {/* Mini bar chart beside the response */}
+              {conv.chartBars.map((bar, i) => {
+                const barH = bar.value * 0.32
+                const barX = 226 + i * 28
+                const barY = 102 - barH
+                return (
+                  <g key={`cb-${i}`}>
+                    <motion.rect
+                      x={barX} y={barY} width={18} height={barH} rx={3}
+                      fill={bar.color} opacity={0.7}
+                      initial={{ height: 0, y: 102 }}
+                      animate={{ height: barH, y: barY }}
+                      transition={{ delay: 1.6 + i * 0.12, duration: 0.35, ease: 'easeOut' }}
+                    />
+                    <text x={barX + 9} y={112} textAnchor="middle" fontSize={5.5} fill={MUTED} fontFamily="Inter, sans-serif">
+                      {bar.label}
+                    </text>
+                  </g>
+                )
+              })}
+              <line x1={222} y1={102} x2={312} y2={102} stroke="#E2E8F0" strokeWidth={0.5} />
+            </motion.g>
+          </AnimatePresence>
+
+          {/* Input bar */}
+          <rect x={12} y={118} width={296} height={22} rx={11} fill="#F8FAFC" stroke="#E2E8F0" strokeWidth={0.5} />
+          <text x={24} y={132} fontSize={7} fill={MUTED} fontFamily="Inter, sans-serif" fontStyle="italic">
+            Ask a follow-up question...
+          </text>
+          <circle cx={296} cy={129} r={8} fill={PURPLE} opacity={0.8} />
+          <polygon points="293,126 300,129 293,132" fill="white" />
+
+          {/* Semantic layer badge */}
+          <motion.g
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.6 }}
+            transition={{ delay: 2 }}
+          >
+            <rect x={105} y={145} width={110} height={12} rx={6} fill={PURPLE} opacity={0.08} />
+            <text x={160} y={153.5} textAnchor="middle" fontSize={6} fill={PURPLE} fontFamily="Inter, sans-serif" fontWeight={500}>
+              NLP → SQL → Visualization
+            </text>
+          </motion.g>
+
+        </svg>
+
+        {/* Step indicator dots */}
+        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
+          {CONVERSATION.map((_, i) => (
+            <button
+              key={i}
+              onClick={(e) => { e.stopPropagation(); setStep(i) }}
+              className={`h-1.5 rounded-full transition-all ${step === i ? 'w-4 bg-accent' : 'w-1.5 bg-text-tertiary/40'}`}
+            />
+          ))}
+        </div>
+      </div>
+    )
+  }
+
   return (
-    <div className={`relative rounded-xl bg-bg overflow-hidden ${compact ? 'h-52' : 'h-[280px]'}`}>
+    <div className="relative rounded-xl bg-bg overflow-hidden h-[280px]">
       <svg viewBox="0 0 500 200" className="h-full w-full p-3" xmlns="http://www.w3.org/2000/svg">
 
         {/* === LEFT: Chat Interface === */}
@@ -99,7 +214,7 @@ export default function ConversationalBIVisual({ compact = false }: { compact?: 
             <rect x={50} y={54} width={160} height={24} rx={12} fill={PURPLE} opacity={0.1} />
             <rect x={50} y={54} width={160} height={24} rx={12} fill="none" stroke={PURPLE} strokeWidth={0.6} opacity={0.3} />
             <text x={60} y={69} fontSize={6} fontFamily="Inter, sans-serif" fill={PURPLE} fontWeight={500}>
-              {compact ? conv.question.slice(0, 35) + (conv.question.length > 35 ? '...' : '') : conv.question.slice(0, 40)}
+              {conv.question.slice(0, 40)}
             </text>
           </motion.g>
         </AnimatePresence>
