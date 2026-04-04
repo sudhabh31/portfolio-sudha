@@ -4,6 +4,7 @@ import { X } from 'lucide-react'
 import type { ProjectItem } from '@/types'
 import Badge from '@/components/ui/Badge'
 import TechStackVisual from '@/components/visuals/TechStackVisual'
+import DenialAnalyticsVisual from '@/components/visuals/DenialAnalyticsVisual'
 
 interface ProjectDetailOverlayProps {
   project: ProjectItem
@@ -14,6 +15,8 @@ function ProjectVisual({ visual }: { visual?: string }) {
   switch (visual) {
     case 'tech-stack':
       return <TechStackVisual />
+    case 'denial-analytics':
+      return <DenialAnalyticsVisual />
     default:
       return null
   }
@@ -57,6 +60,7 @@ export default function ProjectDetailOverlay({ project, onClose }: ProjectDetail
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
+        onClick={onClose}
       >
         <motion.div
           className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-2xl border border-border bg-surface shadow-elevated"

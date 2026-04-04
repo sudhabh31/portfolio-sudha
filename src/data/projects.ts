@@ -51,9 +51,45 @@ export const projects: ProjectItem[] = [
     id: 'proj-2',
     title: 'Denial Analytics Engine',
     description:
-      'Built denial analytics dashboards that recovered $100K+ per quarter in averted payer denials, giving Revenue Cycle leaders line-of-sight into denial root causes and directly fueling customer renewal conversations with measurable ROI.',
+      'Architected the \'Avoided Loss\' framework to quantify a $100K+ quarterly ROI for AI-automated claims.',
     image: '/images/projects/denial-analytics.jpg',
     technologies: ['Tableau', 'SQL', 'Databricks', 'Python'],
+    visual: 'denial-analytics',
+    detail: {
+      headline: 'The "What If" Engine: Quantifying Avoided Denials in AI Automation',
+      sections: [
+        {
+          title: 'The Challenge',
+          content: 'Our AI automation was processing thousands of claims, but we lacked a definitive way to answer the customer\'s most important question: "How much money did this actually save me?" Because the AI prevents errors before they happen, the value was effectively invisible. To prove the ROI, I had to engineer a framework that could quantify "The Value of the Avoided Mistake."',
+        },
+        {
+          title: 'The Solution: A Counterfactual Value Framework',
+          content: 'I led the analytical design of a "Manual vs. Automated" impact model. Instead of just tracking what happened, I built the logic to calculate Total Avoided Denials—identifying the specific cases that would have been denied under manual processing rules but were successfully cleared by our automation.',
+        },
+        {
+          title: 'The Analytical Deep Dive',
+          content: '',
+          bullets: [
+            'Defining the "Manual Baseline" — I collaborated with subject matter experts to codify the specific denial triggers—such as coding errors or missing documentation—that consistently occur in manual workflows.',
+            'The Avoidance Logic — I developed the calculation framework to tag automated cases against these manual risk profiles. This allowed us to generate a "Potential Denial" metric, showing exactly where the AI stepped in to prevent a financial hit.',
+            'Multi-Dimensional Data Cuts — To make the data actionable for hospital leadership, I architected the dashboard to slice these savings by Denial Categories (coding-specific vs. administrative captures), Time-to-Post Velocity (automated instant posting vs. manual lag), and Granular Segments (Payer, Provider, and Hospital Location levels).',
+          ],
+        },
+        {
+          title: 'The Impact: Proving a $100K+ Quarterly ROI',
+          content: '',
+          bullets: [
+            'Quantified the "Invisible" — For the first time, customers could see a documented $100K+ in quarterly savings that would have otherwise been lost to manual processing errors.',
+            'Strategic Alignment — I presented these findings to executive stakeholders, shifting the focus from technical "automation rates" to bottom-line "capital protection."',
+            'Customer Empowerment — The dashboard allowed customers to see exactly which "Denial Reasons" were being mitigated by the AI, giving them total transparency into the health of their revenue cycle.',
+          ],
+        },
+        {
+          title: 'The Bottom Line',
+          content: 'The complexity of this project wasn\'t in the code, but in the logic. By engineering a framework to quantify the "What If," I turned raw claim data into a powerful narrative of financial protection and AI-driven ROI.',
+        },
+      ],
+    },
   },
   {
     id: 'proj-3',

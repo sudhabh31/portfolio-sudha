@@ -1,4 +1,5 @@
 import { useRef, useState, useCallback } from 'react'
+import { createPortal } from 'react-dom'
 import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
 import { AnimatePresence } from 'framer-motion'
@@ -6,6 +7,7 @@ import SectionHeading from '@/components/ui/SectionHeading'
 import Badge from '@/components/ui/Badge'
 import ProjectDetailOverlay from '@/components/ui/ProjectDetailOverlay'
 import TechStackVisual from '@/components/visuals/TechStackVisual'
+import DenialAnalyticsVisual from '@/components/visuals/DenialAnalyticsVisual'
 import { projects } from '@/data/projects'
 import { ArrowUpRight, ExternalLink } from 'lucide-react'
 
@@ -41,6 +43,7 @@ export default function Projects() {
   }, { scope: containerRef })
 
   return (
+    <>
     <section id="projects" ref={containerRef} className="overflow-hidden">
       <div className="flex h-screen flex-col justify-center">
         <div className="px-6 mb-8">
@@ -65,6 +68,10 @@ export default function Projects() {
               {project.visual === 'tech-stack' ? (
                 <div className="mb-5 transition-transform group-hover:scale-[1.02]">
                   <TechStackVisual compact />
+                </div>
+              ) : project.visual === 'denial-analytics' ? (
+                <div className="mb-5 transition-transform group-hover:scale-[1.02]">
+                  <DenialAnalyticsVisual compact />
                 </div>
               ) : (
                 <div className="mb-5 flex h-52 items-center justify-center rounded-xl bg-bg transition-transform group-hover:scale-[1.02]">
@@ -116,7 +123,9 @@ export default function Projects() {
           <div className="flex-shrink-0 w-[100px]" />
         </div>
       </div>
-      {/* Detail overlay */}
+    </section>
+    {/* Portal overlay outside GSAP pin stacking context */}
+    {createPortal(
       <AnimatePresence>
         {activeProject?.detail && (
           <ProjectDetailOverlay
@@ -124,7 +133,9 @@ export default function Projects() {
             onClose={handleClose}
           />
         )}
-      </AnimatePresence>
-    </section>
+      </AnimatePresence>,
+      document.body
+    )}
+    </>
   )
 }
