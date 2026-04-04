@@ -175,25 +175,30 @@ export default function ConversationalBIVisual({ compact = false }: { compact?: 
 
   return (
     <div className="relative rounded-xl bg-bg overflow-hidden h-[280px]">
-      <svg viewBox="0 0 500 260" className="h-full w-full p-3" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 440 210" className="h-full w-full p-3" xmlns="http://www.w3.org/2000/svg">
 
-        {/* === TOP ROW: Chat Conversation === */}
-        <rect x={8} y={8} width={484} height={130} rx={10} fill="white" stroke="#E2E8F0" strokeWidth={0.8} />
+        {/* === LEFT: Chat Panel === */}
+        <rect x={4} y={4} width={260} height={202} rx={10} fill="white" stroke="#E2E8F0" strokeWidth={0.8} />
 
-        {/* Chat header */}
-        <rect x={8} y={8} width={484} height={26} rx={10} fill="#F8FAFC" />
-        <rect x={8} y={26} width={484} height={8} fill="#F8FAFC" />
-        <circle cx={24} cy={21} r={7} fill={PURPLE} opacity={0.15} />
-        <text x={24} y={24} textAnchor="middle" fontSize={8} fill={PURPLE} fontWeight={700}>G</text>
-        <text x={38} y={24} fontSize={8} fontWeight={600} fontFamily="Inter, sans-serif" fill={DARK}>
+        {/* Header */}
+        <rect x={4} y={4} width={260} height={26} rx={10} fill="#F8FAFC" />
+        <rect x={4} y={22} width={260} height={8} fill="#F8FAFC" />
+        <circle cx={20} cy={17} r={6} fill={PURPLE} opacity={0.15} />
+        <text x={20} y={20} textAnchor="middle" fontSize={7} fill={PURPLE} fontWeight={700}>G</text>
+        <text x={32} y={20} fontSize={7.5} fontWeight={600} fontFamily="Inter, sans-serif" fill={DARK}>
           Genie Assistant
         </text>
-        <circle cx={472} cy={21} r={4} fill={GREEN} />
-        <text x={410} y={24} fontSize={6.5} fill={MUTED} fontFamily="Inter, sans-serif">
-          Multi-turn context
-        </text>
+        <circle cx={246} cy={17} r={3.5} fill={GREEN} />
 
-        {/* User question bubble */}
+        {/* Previous hint */}
+        <motion.g initial={{ opacity: 0 }} animate={{ opacity: 0.35 }} transition={{ duration: 0.3 }}>
+          <rect x={14} y={36} width={130} height={16} rx={8} fill="#F1F5F9" />
+          <text x={22} y={47} fontSize={6} fill={MUTED} fontFamily="Inter, sans-serif">
+            {step > 0 ? CONVERSATION[step - 1].question.slice(0, 28) + '...' : 'Ask me about your data...'}
+          </text>
+        </motion.g>
+
+        {/* Question bubble */}
         <AnimatePresence mode="wait">
           <motion.g
             key={`q-${step}`}
@@ -202,9 +207,9 @@ export default function ConversationalBIVisual({ compact = false }: { compact?: 
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.3 }}
           >
-            <rect x={180} y={44} width={300} height={28} rx={14} fill={PURPLE} opacity={0.08} />
-            <rect x={180} y={44} width={300} height={28} rx={14} fill="none" stroke={PURPLE} strokeWidth={0.6} opacity={0.25} />
-            <text x={196} y={62} fontSize={7.5} fontFamily="Inter, sans-serif" fill={PURPLE} fontWeight={500}>
+            <rect x={60} y={58} width={194} height={24} rx={12} fill={PURPLE} opacity={0.08} />
+            <rect x={60} y={58} width={194} height={24} rx={12} fill="none" stroke={PURPLE} strokeWidth={0.6} opacity={0.25} />
+            <text x={72} y={74} fontSize={7} fontFamily="Inter, sans-serif" fill={PURPLE} fontWeight={500}>
               {conv.question}
             </text>
           </motion.g>
@@ -216,11 +221,11 @@ export default function ConversationalBIVisual({ compact = false }: { compact?: 
             key={`think-${step}`}
             initial={{ opacity: 0 }}
             animate={{ opacity: [0, 1, 1, 0] }}
-            transition={{ duration: 1.5, delay: 0.5, times: [0, 0.1, 0.8, 1] }}
+            transition={{ duration: 1.5, delay: 0.4, times: [0, 0.1, 0.8, 1] }}
           >
             {[0, 1, 2].map((i) => (
               <motion.circle
-                key={i} cx={32 + i * 10} cy={88} r={2.5} fill={MUTED}
+                key={i} cx={24 + i * 8} cy={100} r={2} fill={MUTED}
                 animate={{ opacity: [0.3, 1, 0.3] }}
                 transition={{ duration: 0.8, delay: i * 0.2, repeat: Infinity }}
               />
@@ -228,165 +233,120 @@ export default function ConversationalBIVisual({ compact = false }: { compact?: 
           </motion.g>
         </AnimatePresence>
 
-        {/* AI response bubble */}
+        {/* Response bubble */}
         <AnimatePresence mode="wait">
           <motion.g
             key={`a-${step}`}
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.8, duration: 0.3 }}
+            transition={{ delay: 1.5, duration: 0.3 }}
           >
-            <rect x={20} y={80} width={380} height={28} rx={14} fill={GREEN} opacity={0.06} />
-            <rect x={20} y={80} width={380} height={28} rx={14} fill="none" stroke={GREEN} strokeWidth={0.5} opacity={0.3} />
-            <circle cx={36} cy={94} r={8} fill={PURPLE} opacity={0.12} />
-            <text x={36} y={97} textAnchor="middle" fontSize={8} fill={PURPLE} fontWeight={700}>G</text>
-            <text x={52} y={97} fontSize={7} fontFamily="Inter, sans-serif" fill={DARK}>
-              {conv.answer}
+            <rect x={14} y={90} width={240} height={40} rx={12} fill={GREEN} opacity={0.06} />
+            <rect x={14} y={90} width={240} height={40} rx={12} fill="none" stroke={GREEN} strokeWidth={0.5} opacity={0.3} />
+            <circle cx={28} cy={104} r={7} fill={PURPLE} opacity={0.12} />
+            <text x={28} y={107} textAnchor="middle" fontSize={7} fill={PURPLE} fontWeight={700}>G</text>
+            <text x={42} y={106} fontSize={6.5} fontFamily="Inter, sans-serif" fill={DARK}>
+              {conv.answer.slice(0, 42)}
             </text>
+            {conv.answer.length > 42 && (
+              <text x={42} y={118} fontSize={6.5} fontFamily="Inter, sans-serif" fill={DARK}>
+                {conv.answer.slice(42, 80)}
+              </text>
+            )}
           </motion.g>
         </AnimatePresence>
 
         {/* Input bar */}
-        <rect x={20} y={116} width={460} height={16} rx={8} fill="#F8FAFC" stroke="#E2E8F0" strokeWidth={0.5} />
-        <text x={34} y={127} fontSize={6.5} fill={MUTED} fontFamily="Inter, sans-serif" fontStyle="italic">
+        <rect x={14} y={140} width={240} height={18} rx={9} fill="#F8FAFC" stroke="#E2E8F0" strokeWidth={0.5} />
+        <text x={24} y={152} fontSize={6.5} fill={MUTED} fontFamily="Inter, sans-serif" fontStyle="italic">
           Ask a follow-up question...
         </text>
-        <circle cx={468} cy={124} r={6} fill={PURPLE} opacity={0.8} />
-        <polygon points="466,122 471,124 466,126" fill="white" />
+        <circle cx={244} cy={149} r={6} fill={PURPLE} opacity={0.8} />
+        <polygon points="242,147 247,149 242,151" fill="white" />
 
-        {/* === BOTTOM ROW: Pipeline Flow === */}
-        <motion.g
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.0, duration: 0.5 }}
+        {/* Context badge */}
+        <motion.text
+          x={132} y={176} textAnchor="middle" fontSize={5.5} fill={PURPLE} opacity={0.4} fontFamily="Inter, sans-serif"
+          initial={{ opacity: 0 }} animate={{ opacity: 0.4 }} transition={{ delay: 2 }}
         >
-          {/* NLP Input label */}
-          <rect x={8} y={152} width={100} height={44} rx={8} fill={PURPLE} opacity={0.06} />
-          <rect x={8} y={152} width={100} height={44} rx={8} fill="none" stroke={PURPLE} strokeWidth={0.8} strokeDasharray="3 2" />
-          <text x={58} y={170} textAnchor="middle" fontSize={7} fontWeight={600} fontFamily="Inter, sans-serif" fill={PURPLE}>
-            NLP Input
-          </text>
-          <text x={58} y={184} textAnchor="middle" fontSize={6} fill={MUTED} fontFamily="Inter, sans-serif">
-            Natural Language
-          </text>
+          Multi-turn context maintained
+        </motion.text>
 
-          {/* Arrow 1 */}
-          <motion.path
-            d="M108,174 L138,174"
-            fill="none" stroke={PURPLE} strokeWidth={1.2} strokeDasharray="4 3" opacity={0.4}
-            initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
-            transition={{ delay: 1.2, duration: 0.3 }}
-          />
-          <polygon points="136,171 142,174 136,177" fill={PURPLE} opacity={0.4} />
-
-          {/* Semantic Layer box */}
-          <rect x={142} y={148} width={120} height={52} rx={8} fill={PURPLE} opacity={0.06} />
-          <rect x={142} y={148} width={120} height={52} rx={8} fill="none" stroke={PURPLE} strokeWidth={1} />
-          <text x={202} y={166} textAnchor="middle" fontSize={7} fontWeight={700} fontFamily="Inter, sans-serif" fill={PURPLE} letterSpacing="0.05em">
-            SEMANTIC LAYER
+        {/* NLP → SQL → Viz label */}
+        <motion.g initial={{ opacity: 0 }} animate={{ opacity: 0.5 }} transition={{ delay: 2.2 }}>
+          <rect x={82} y={184} width={100} height={14} rx={7} fill={PURPLE} opacity={0.06} />
+          <text x={132} y={194} textAnchor="middle" fontSize={6} fill={PURPLE} fontFamily="Inter, sans-serif" fontWeight={500}>
+            NLP → SQL → Viz
           </text>
+        </motion.g>
 
-          {/* SQL snippet */}
+        {/* === RIGHT: Result Chart === */}
+        <motion.g
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 1.8, type: 'spring', stiffness: 200, damping: 20 }}
+          style={{ transformOrigin: '360px 105px' }}
+        >
+          <rect x={276} y={4} width={160} height={202} rx={10} fill="white" stroke="#E2E8F0" strokeWidth={0.8} />
+
+          {/* Chart header */}
+          <text x={292} y={24} fontSize={8} fontWeight={600} fontFamily="Inter, sans-serif" fill={DARK}>Result</text>
+          <rect x={332} y={14} width={30} height={12} rx={4} fill={GREEN} opacity={0.15} />
+          <text x={338} y={23} fontSize={6.5} fill={GREEN} fontWeight={600}>LIVE</text>
+
+          {/* Bar chart — fits inside box */}
           <AnimatePresence mode="wait">
             <motion.g
-              key={`sql-${step}`}
+              key={`chart-${step}`}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 1.5, duration: 0.4 }}
+              transition={{ delay: 2.0, duration: 0.3 }}
             >
-              <rect x={152} y={174} width={100} height={18} rx={4} fill="#1E1E2E" />
-              <text x={158} y={186} fontSize={5.5} fontFamily="monospace" fill="#A6E3A1">
-                {conv.sql.slice(0, 30)}
-              </text>
+              {conv.chartBars.map((bar, i) => {
+                const maxH = 100
+                const barH = (bar.value / 100) * maxH
+                const barW = conv.chartBars.length <= 2 ? 40 : 30
+                const gap = conv.chartBars.length <= 2 ? 50 : 40
+                const totalW = conv.chartBars.length * gap
+                const startX = 356 - totalW / 2
+                const barX = startX + i * gap
+                const baseY = 170
+                const barY = baseY - barH
+                return (
+                  <g key={`bar-${i}`}>
+                    <motion.rect
+                      x={barX} y={barY} width={barW} height={barH} rx={4}
+                      fill={bar.color} opacity={0.75}
+                      initial={{ height: 0, y: baseY }}
+                      animate={{ height: barH, y: barY }}
+                      transition={{ delay: 2.1 + i * 0.12, duration: 0.4, ease: 'easeOut' }}
+                    />
+                    <motion.text
+                      x={barX + barW / 2} y={barY - 5} textAnchor="middle"
+                      fontSize={6} fontWeight={600} fill={bar.color} fontFamily="Inter, sans-serif"
+                      initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+                      transition={{ delay: 2.3 + i * 0.12 }}
+                    >
+                      {bar.value}%
+                    </motion.text>
+                    <text x={barX + barW / 2} y={182} textAnchor="middle" fontSize={6} fill={MUTED} fontFamily="Inter, sans-serif">
+                      {bar.label}
+                    </text>
+                  </g>
+                )
+              })}
+              <line x1={290} y1={170} x2={424} y2={170} stroke="#E2E8F0" strokeWidth={0.5} />
             </motion.g>
           </AnimatePresence>
 
-          {/* Arrow 2 */}
-          <motion.path
-            d="M262,174 L292,174"
-            fill="none" stroke={PURPLE} strokeWidth={1.2} strokeDasharray="4 3" opacity={0.4}
-            initial={{ pathLength: 0 }} animate={{ pathLength: 1 }}
-            transition={{ delay: 1.8, duration: 0.3 }}
-          />
-          <polygon points="290,171 296,174 290,177" fill={PURPLE} opacity={0.4} />
-
-          {/* Result chart panel */}
-          <motion.g
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 2.0, type: 'spring', stiffness: 300, damping: 25 }}
-            style={{ transformOrigin: '395px 174px' }}
+          {/* Instant label */}
+          <motion.text
+            x={356} y={198} textAnchor="middle" fontSize={5.5} fill={MUTED} fontFamily="Inter, sans-serif" fontStyle="italic"
+            initial={{ opacity: 0 }} animate={{ opacity: 0.5 }} transition={{ delay: 2.8 }}
           >
-            <rect x={296} y={148} width={196} height={52} rx={8} fill="white" stroke="#E2E8F0" strokeWidth={0.8} />
-
-            {/* Chart title + LIVE badge */}
-            <text x={308} y={164} fontSize={6.5} fontWeight={600} fontFamily="Inter, sans-serif" fill={DARK}>
-              Result
-            </text>
-            <rect x={338} y={157} width={26} height={10} rx={3} fill={GREEN} opacity={0.15} />
-            <text x={342} y={165} fontSize={5.5} fill={GREEN} fontWeight={600}>LIVE</text>
-
-            {/* Bar chart */}
-            <AnimatePresence mode="wait">
-              <motion.g
-                key={`chart-${step}`}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 2.2, duration: 0.3 }}
-              >
-                {conv.chartBars.map((bar, i) => {
-                  const barX = 380 + i * 34
-                  const maxH = 28
-                  const barH = (bar.value / 100) * maxH
-                  const barY = 192 - barH
-                  return (
-                    <g key={`bar-${i}`}>
-                      <motion.rect
-                        x={barX} y={barY} width={22} height={barH} rx={3}
-                        fill={bar.color} opacity={0.75}
-                        initial={{ height: 0, y: 192 }}
-                        animate={{ height: barH, y: barY }}
-                        transition={{ delay: 2.3 + i * 0.12, duration: 0.35, ease: 'easeOut' }}
-                      />
-                      <text x={barX + 11} y={198} textAnchor="middle" fontSize={5} fill={MUTED} fontFamily="Inter, sans-serif">
-                        {bar.label}
-                      </text>
-                    </g>
-                  )
-                })}
-                <line x1={376} y1={192} x2={484} y2={192} stroke="#E2E8F0" strokeWidth={0.5} />
-              </motion.g>
-            </AnimatePresence>
-          </motion.g>
-
-          {/* Data particles */}
-          {[0, 1].map((i) => (
-            <motion.circle
-              key={`dp-${i}`} r={2.5} fill={PURPLE} opacity={0.5}
-              initial={{ offsetDistance: '0%' }}
-              animate={{ offsetDistance: '100%' }}
-              transition={{ delay: 1.2 + i * 0.5, duration: 0.6, ease: 'easeInOut', repeat: Infinity, repeatDelay: 4 }}
-              style={{ offsetPath: 'path("M108,174 L142,174")' }}
-            />
-          ))}
-          {[0, 1].map((i) => (
-            <motion.circle
-              key={`dp2-${i}`} r={2.5} fill={ORANGE} opacity={0.5}
-              initial={{ offsetDistance: '0%' }}
-              animate={{ offsetDistance: '100%' }}
-              transition={{ delay: 2.0 + i * 0.5, duration: 0.6, ease: 'easeInOut', repeat: Infinity, repeatDelay: 4 }}
-              style={{ offsetPath: 'path("M262,174 L296,174")' }}
-            />
-          ))}
+            Answer in seconds
+          </motion.text>
         </motion.g>
-
-        {/* Pipeline label */}
-        <motion.text
-          x={250} y={218} textAnchor="middle" fontSize={6} fill={PURPLE} opacity={0.4} fontFamily="Inter, sans-serif"
-          initial={{ opacity: 0 }} animate={{ opacity: 0.4 }} transition={{ delay: 2.5 }}
-        >
-          Natural Language → SQL Translation → Instant Visualization
-        </motion.text>
 
       </svg>
 

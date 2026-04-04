@@ -40,10 +40,6 @@ export const projects: ProjectItem[] = [
             'Professional UX — Provided a "Single Source of Truth" within our own website, giving stakeholders clean, fresh, and interactive analytics without ever leaving the product.',
           ],
         },
-        {
-          title: 'The Bottom Line',
-          content: 'By moving away from brittle, manual processes and embracing a modern, scriptable data stack, we transformed a legacy reporting burden into a secure, automated, and embedded product feature.',
-        },
       ],
     },
   },
@@ -83,10 +79,6 @@ export const projects: ProjectItem[] = [
             'Strategic Alignment — I presented these findings to executive stakeholders, shifting the focus from technical "automation rates" to bottom-line "capital protection."',
             'Customer Empowerment — The dashboard allowed customers to see exactly which "Denial Reasons" were being mitigated by the AI, giving them total transparency into the health of their revenue cycle.',
           ],
-        },
-        {
-          title: 'The Bottom Line',
-          content: 'The complexity of this project wasn\'t in the code, but in the logic. By engineering a framework to quantify the "What If," I turned raw claim data into a powerful narrative of financial protection and AI-driven ROI.',
         },
       ],
     },
@@ -129,10 +121,6 @@ export const projects: ProjectItem[] = [
             'Reduced Time-to-Insight — Users moved from "searching for a dashboard" to "receiving an answer" in seconds, drastically speeding up decision-making for our clinical and financial partners.',
           ],
         },
-        {
-          title: 'The Bottom Line',
-          content: 'I didn\'t just build a chatbot; I built a conversational interface for the enterprise. By architecting a robust semantic layer, I transformed the data platform from a static resource into a collaborative, intelligent partner that meets stakeholders in natural conversation.',
-        },
       ],
     },
   },
@@ -146,10 +134,42 @@ export const projects: ProjectItem[] = [
   },
   {
     id: 'proj-5',
-    title: 'Data Pipeline Automation',
+    title: 'The Data Integrity Gateway',
     description:
-      'Designed end-to-end inbound file management pipelines across 20+ custom feeds from 8 enterprise clients at Teladoc Health. Built bulk QC automation, automated response file generation, and replaced manual processes that consumed half the day into single automated Jenkins jobs.',
+      'Engineering a \'Zero-Touch\' Data Integrity Gateway: Automating end-to-end validation, error-coding, and client feedback loops to reclaim 30% of daily operational bandwidth.',
     image: '/images/projects/pipeline-automation.jpg',
     technologies: ['Python', 'Jenkins', 'AWS S3', 'SFTP', 'PostgreSQL'],
+    detail: {
+      headline: 'The Data Integrity Gateway',
+      sections: [
+        {
+          title: 'The Challenge',
+          content: 'As our enterprise data volume scaled, our ingestion process became a high-risk bottleneck. We were receiving 8+ mission-critical files daily that required a rigorous four-step manual process: integrity checks, receipt acknowledgement, error reporting, and final deployment. This "human-in-the-loop" model consumed half of every workday, creating a constant "catch-up" cycle for the team and delaying critical production updates.',
+        },
+        {
+          title: 'The Solution: A Code-First Validation Engine',
+          content: 'I engineered a fully automated, programmatic "Gatekeeper" using Python and Jenkins. This system transformed our manual checklist into a resilient, production-grade pipeline that handles the entire file lifecycle—from the moment data hits our servers to its final deployment.',
+        },
+        {
+          title: 'The Engineering Strategy',
+          content: '',
+          bullets: [
+            'Programmatic Field-Level Validation — I developed a Python-based validation engine that audits every column of inbound files against a strict, predefined set of restrictions.',
+            'Standardized Error Codification — To eliminate ambiguity, I designed a custom error-tracking framework. If a field deviates from the standard, the script automatically categorizes the failure into a CAV (Conditional Attribute Validation) manifest, attaching a specific error code for every type of anomaly.',
+            'Automated Client Feedback Loops — I architected a "hands-off" response system. The pipeline automatically generates Receipt Acknowledgements and Error Response files and pushes them directly to the client\'s SFTP bucket.',
+            'Intelligent Pipeline Orchestration — I built a multi-stage Jenkins workflow that sequences the entire process. The pipeline is designed for "Silent Success"—it runs fully through to deployment overnight, only raising a review flag and halting if a critical validation check fails.',
+          ],
+        },
+        {
+          title: 'The Operational Impact',
+          content: '',
+          bullets: [
+            'Reclaimed 50% of Daily Bandwidth — By automating the 4-hour morning manual "grind," I enabled the team to walk into a "Clean Slate" every day, shifting our focus from data cleaning to high-level architecture.',
+            'Zero-Latency Client Reporting — Our enterprise partners moved from waiting days for feedback to receiving automated error manifests in minutes, significantly accelerating the data correction cycle.',
+            'Industrial-Grade Scalability — The system provided a consistent, rigorous standard for all inbound data, ensuring that our production environment remained protected from schema drift and data corruption as our client base grew.',
+          ],
+        },
+      ],
+    },
   },
 ]
