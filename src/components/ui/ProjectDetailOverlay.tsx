@@ -8,6 +8,7 @@ import DenialAnalyticsVisual from '@/components/visuals/DenialAnalyticsVisual'
 import ConversationalBIVisual from '@/components/visuals/ConversationalBIVisual'
 import DataIntegrityVisual from '@/components/visuals/DataIntegrityVisual'
 import InnovationLabVisual from '@/components/visuals/InnovationLabVisual'
+import DispatchOptimizationVisual from '@/components/visuals/DispatchOptimizationVisual'
 
 interface ProjectDetailOverlayProps {
   project: ProjectItem
@@ -26,6 +27,8 @@ function ProjectVisual({ visual }: { visual?: string }) {
       return <DataIntegrityVisual />
     case 'innovation-lab':
       return <InnovationLabVisual />
+    case 'dispatch-optimization':
+      return <DispatchOptimizationVisual />
     default:
       return null
   }

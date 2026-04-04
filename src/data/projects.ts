@@ -177,6 +177,7 @@ export const projects: ProjectItem[] = [
     visual: 'data-integrity',
     detail: {
       headline: 'The Data Integrity Gateway',
+
       sections: [
         {
           title: 'The Challenge',
@@ -203,6 +204,49 @@ export const projects: ProjectItem[] = [
             'Reclaimed 50% of Daily Bandwidth — By automating the 4-hour morning manual "grind," I enabled the team to walk into a "Clean Slate" every day, shifting our focus from data cleaning to high-level architecture.',
             'Zero-Latency Client Reporting — Our enterprise partners moved from waiting days for feedback to receiving automated error manifests in minutes, significantly accelerating the data correction cycle.',
             'Industrial-Grade Scalability — The system provided a consistent, rigorous standard for all inbound data, ensuring that our production environment remained protected from schema drift and data corruption as our client base grew.',
+          ],
+        },
+      ],
+    },
+  },
+  {
+    id: 'proj-6',
+    title: 'Predictive Dispatch Optimization',
+    description:
+      'Designed a ground-up ML framework to analyze call logs and web content, resulting in a predictive dispatch engine that identified $16.8M in potential savings.',
+    image: '/images/projects/dispatch-optimization.jpg',
+    technologies: ['R', 'SAS', 'Tableau', 'Excel/VBA', 'SQL', 'Python', 'Machine Learning'],
+    visual: 'dispatch-optimization',
+    detail: {
+      headline: 'Predictive Dispatch Optimization',
+      sections: [
+        {
+          title: 'The Challenge',
+          content:
+            'A Fortune 100 technology client lacked any mechanism to understand why in-warranty customers were calling for support instead of using digital self-service tools. With no existing process to link call intent to web content, the client faced high-liability warranty dispatch expenses and a surge in expensive technician site visits. They presented a core question: How can we optimize call center interactions to minimize site visits and reduce warranty spend?',
+        },
+        {
+          title: 'The Solution: A Ground-Up Predictive Architecture',
+          content:
+            'I helped design a new analytics engine from scratch using Supervised Machine Learning and Topic Modeling. We analyzed millions of unstructured call logs alongside customer-facing website content to identify "digital gaps"—areas where the website already had the information needed, but customers still called.',
+        },
+        {
+          title: 'The Engineering Strategy',
+          content: '',
+          bullets: [
+            'ML-Driven Classification — Built a training dataset from statistically significant samples to develop a Topic Modeling algorithm in R, categorizing call intents at scale.',
+            'Content Gap Analysis — Mapped call categories against website FAQs and troubleshooting guides to pinpoint where digital self-service was failing or missing.',
+            'Dispatch Optimization Logic — Developed the logic to flag calls that could be resolved digitally, preventing unnecessary "truck rolls" (site visits) and reducing dispatch spend.',
+            'High-Performance Infrastructure — Built the framework using R, Tableau, and Excel/VBA, successfully reducing the analytics execution time from 18 hours to under 1 hour.',
+          ],
+        },
+        {
+          title: 'The Impact',
+          content: '',
+          bullets: [
+            '$16.8M in Potential Savings — Identified $6.3M in call cost reductions and $10.5M in dispatch expense optimizations.',
+            '94% Faster Insights — Reduced the reporting lifecycle from 18 hours to under 60 minutes, enabling daily tracking of operational impact.',
+            'Liability Reduction — Significantly lowered in-warranty dispatch spend, decreasing a major financial liability for the customer.',
           ],
         },
       ],

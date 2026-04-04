@@ -9,6 +9,7 @@ import DenialAnalyticsVisual from '@/components/visuals/DenialAnalyticsVisual'
 import ConversationalBIVisual from '@/components/visuals/ConversationalBIVisual'
 import DataIntegrityVisual from '@/components/visuals/DataIntegrityVisual'
 import InnovationLabVisual from '@/components/visuals/InnovationLabVisual'
+import DispatchOptimizationVisual from '@/components/visuals/DispatchOptimizationVisual'
 import { projects } from '@/data/projects'
 import { ArrowUpRight, ExternalLink } from 'lucide-react'
 
@@ -62,6 +63,10 @@ export default function Projects() {
                 ) : project.visual === 'innovation-lab' ? (
                   <div className="mb-5 transition-transform group-hover:scale-[1.02]">
                     <InnovationLabVisual compact />
+                  </div>
+                ) : project.visual === 'dispatch-optimization' ? (
+                  <div className="mb-5 transition-transform group-hover:scale-[1.02]">
+                    <DispatchOptimizationVisual compact />
                   </div>
                 ) : (
                   <div className="mb-5 flex h-52 items-center justify-center rounded-xl bg-bg transition-transform group-hover:scale-[1.02]">
