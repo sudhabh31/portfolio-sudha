@@ -139,6 +139,7 @@ export const projects: ProjectItem[] = [
       'Engineering a \'Zero-Touch\' Data Integrity Gateway: Automating end-to-end validation, error-coding, and client feedback loops to reclaim 30% of daily operational bandwidth.',
     image: '/images/projects/pipeline-automation.jpg',
     technologies: ['Python', 'Jenkins', 'AWS S3', 'SFTP', 'PostgreSQL'],
+    visual: 'data-integrity',
     detail: {
       headline: 'The Data Integrity Gateway',
       sections: [

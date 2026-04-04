@@ -322,18 +322,9 @@ export default function DenialAnalyticsVisual({ compact = false }: { compact?: b
 
   return (
     <div className={`relative rounded-xl bg-bg overflow-hidden ${compact ? 'h-52' : 'h-[280px]'}`}>
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={view}
-          className="absolute inset-0 flex items-center justify-center p-2"
-          initial={{ opacity: 0, x: 30 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -30 }}
-          transition={{ duration: 0.4 }}
-        >
-          {view === 'flow' ? <FlowAnimation /> : <DashboardMockup />}
-        </motion.div>
-      </AnimatePresence>
+      <div key={view} className="absolute inset-0 flex items-center justify-center p-2">
+        {view === 'flow' ? <FlowAnimation /> : <DashboardMockup />}
+      </div>
 
       {/* View indicator dots */}
       <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">

@@ -6,6 +6,7 @@ import Badge from '@/components/ui/Badge'
 import TechStackVisual from '@/components/visuals/TechStackVisual'
 import DenialAnalyticsVisual from '@/components/visuals/DenialAnalyticsVisual'
 import ConversationalBIVisual from '@/components/visuals/ConversationalBIVisual'
+import DataIntegrityVisual from '@/components/visuals/DataIntegrityVisual'
 
 interface ProjectDetailOverlayProps {
   project: ProjectItem
@@ -20,6 +21,8 @@ function ProjectVisual({ visual }: { visual?: string }) {
       return <DenialAnalyticsVisual />
     case 'conversational-bi':
       return <ConversationalBIVisual />
+    case 'data-integrity':
+      return <DataIntegrityVisual />
     default:
       return null
   }
