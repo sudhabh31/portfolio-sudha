@@ -21,6 +21,15 @@ export const experiences: ExperienceItem[] = [
   },
   {
     id: 'exp-3',
+    role: 'Automation Intern',
+    company: 'Mid-Size Manufacturing Firm',
+    period: 'Jan 2018 — May 2018',
+    description:
+      'Partnered with a team of three to automate the entire weekly analytics suite for a mid-size manufacturing operation that had been running every report manually in Excel. Engineered Excel VBA solutions that reduced a multi-day reporting cycle to a single button click. Led the change management effort by training end users on how to modify formulas, update machine tags, and maintain the automated workflows independently.',
+    technologies: ['Excel/VBA', 'Analytics', 'Process Automation'],
+  },
+  {
+    id: 'exp-4',
     role: 'Data Analyst',
     company: 'Facebook Advertising Solutions (Spectraforce)',
     period: 'Jun 2015 — Nov 2015',
@@ -29,7 +38,7 @@ export const experiences: ExperienceItem[] = [
     technologies: ['R', 'Excel/VBA', 'SQL', 'Analytics'],
   },
   {
-    id: 'exp-4',
+    id: 'exp-5',
     role: 'Data Analyst',
     company: 'MuSigma Business Solutions Inc.',
     period: 'Aug 2013 — Apr 2015',
@@ -38,7 +47,7 @@ export const experiences: ExperienceItem[] = [
     technologies: ['R', 'SAS', 'Tableau', 'Excel/VBA', 'SQL', 'Python', 'Machine Learning'],
   },
   {
-    id: 'exp-5',
+    id: 'exp-6',
     role: 'Design Intern',
     company: 'Honeywell Automation Limited',
     period: 'Jul 2012 — Dec 2012',
@@ -47,7 +56,7 @@ export const experiences: ExperienceItem[] = [
     technologies: ['AutoCAD', 'Excel', 'Engineering Design', 'Automation'],
   },
   {
-    id: 'exp-6',
+    id: 'exp-7',
     role: 'Vocational Education Intern',
     company: 'GMR Varalakshmi Foundation',
     period: 'May 2010 — Aug 2010',
