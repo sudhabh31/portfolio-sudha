@@ -21,7 +21,7 @@ export default function FeaturesGallery() {
           subtitle="Full-stack analytics from raw data ingestion pipelines to high-fidelity BI and executive dashboards."
         />
 
-        <div className="flex flex-col items-center gap-12 lg:flex-row lg:gap-16">
+        <div className="flex flex-col items-center justify-center gap-12 lg:flex-row lg:gap-16">
           {/* Card stack */}
           <div
             className="relative h-[520px] w-full max-w-lg flex-shrink-0"
