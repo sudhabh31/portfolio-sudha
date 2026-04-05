@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import SectionHeading from '@/components/ui/SectionHeading'
 import { galleryItems } from '@/data/gallery'
+import type { GalleryItem } from '@/types'
 import BIDashboardVisual from '@/components/visuals/BIDashboardVisual'
 import DataPipelineVisual from '@/components/visuals/DataPipelineVisual'
 import AIAutomationVisual from '@/components/visuals/AIAutomationVisual'
@@ -9,8 +10,59 @@ import HealthcareAnalyticsVisual from '@/components/visuals/HealthcareAnalyticsV
 import ArchitectureVisual from '@/components/visuals/ArchitectureVisual'
 import LeadershipVisual from '@/components/visuals/LeadershipVisual'
 
+function CardVisual({ id }: { id: string }) {
+  return id === 'gal-1' ? (
+    <BIDashboardVisual />
+  ) : id === 'gal-2' ? (
+    <DataPipelineVisual />
+  ) : id === 'gal-3' ? (
+    <AIAutomationVisual />
+  ) : id === 'gal-4' ? (
+    <HealthcareAnalyticsVisual />
+  ) : id === 'gal-5' ? (
+    <ArchitectureVisual />
+  ) : id === 'gal-6' ? (
+    <LeadershipVisual />
+  ) : null
+}
+
+function CardContent({ item, showVisual }: { item: GalleryItem; showVisual: boolean }) {
+  return (
+    <>
+      <div className="mb-4 h-1 w-16 rounded-full bg-accent" />
+      <span className="section-label mb-2 block">{item.category}</span>
+      <h3 className="mb-2 text-xl font-bold text-text-primary lg:mb-3 lg:text-2xl">
+        {item.title}
+      </h3>
+      {item.bullets ? (
+        <ul className="mt-1 space-y-2">
+          {item.bullets.map((b) => (
+            <li key={b.label} className="flex gap-2.5 text-sm leading-relaxed text-text-secondary">
+              <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-accent" />
+              <span>
+                <strong className="text-text-primary">{b.label}</strong>
+                {' — '}
+                {b.text}
+              </span>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p className="text-text-secondary leading-relaxed">
+          {item.description}
+        </p>
+      )}
+      {showVisual && (
+        <CardVisual id={item.id} />
+      )}
+    </>
+  )
+}
+
 export default function FeaturesGallery() {
   const [activeIndex, setActiveIndex] = useState(0)
+
+  const activeItem = galleryItems[activeIndex]
 
   return (
     <section id="gallery" className="px-6 py-24">
@@ -22,10 +74,24 @@ export default function FeaturesGallery() {
         />
 
         <div className="flex flex-col items-center justify-center gap-12 lg:flex-row lg:gap-16">
-          {/* Card stack */}
-          <div
-            className="relative h-[340px] w-full max-w-lg flex-shrink-0 lg:h-[520px]"
-          >
+          {/* Mobile: single card, auto height */}
+          <div className="w-full max-w-lg lg:hidden">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeItem.id}
+                initial={{ opacity: 0, x: 40 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -40 }}
+                transition={{ duration: 0.25 }}
+                className="rounded-2xl border border-border bg-surface p-5 shadow-medium"
+              >
+                <CardContent item={activeItem} showVisual={false} />
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Desktop: card stack with absolute positioning */}
+          <div className="relative hidden h-[520px] w-full max-w-lg flex-shrink-0 lg:block">
             <AnimatePresence mode="popLayout">
               {galleryItems.map((item, index) => {
                 const offset = (index - activeIndex + galleryItems.length) % galleryItems.length
@@ -46,51 +112,10 @@ export default function FeaturesGallery() {
                     }}
                     exit={{ opacity: 0, x: -300, rotateZ: -8, scale: 0.9 }}
                     transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                    className="absolute inset-0 cursor-pointer overflow-hidden rounded-2xl border border-border bg-surface p-5 shadow-medium lg:p-8"
+                    className="absolute inset-0 cursor-pointer overflow-hidden rounded-2xl border border-border bg-surface p-8 shadow-medium"
                     onClick={() => setActiveIndex(index)}
                   >
-                    {/* Colored accent bar */}
-                    <div className="mb-4 h-1 w-16 rounded-full bg-accent" />
-
-                    <span className="section-label mb-2 block">{item.category}</span>
-                    <h3 className="mb-2 text-xl font-bold text-text-primary lg:mb-3 lg:text-2xl">
-                      {item.title}
-                    </h3>
-                    {item.bullets ? (
-                      <ul className="mt-1 space-y-2">
-                        {item.bullets.map((b) => (
-                          <li key={b.label} className="flex gap-2.5 text-sm leading-relaxed text-text-secondary">
-                            <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-accent" />
-                            <span>
-                              <strong className="text-text-primary">{b.label}</strong>
-                              {' — '}
-                              {b.text}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
-                    ) : (
-                      <p className="text-text-secondary leading-relaxed">
-                        {item.description}
-                      </p>
-                    )}
-
-                    {/* Visual area — hidden on mobile */}
-                    <div className="hidden lg:block">
-                      {item.id === 'gal-1' ? (
-                        <BIDashboardVisual />
-                      ) : item.id === 'gal-2' ? (
-                        <DataPipelineVisual />
-                      ) : item.id === 'gal-3' ? (
-                        <AIAutomationVisual />
-                      ) : item.id === 'gal-4' ? (
-                        <HealthcareAnalyticsVisual />
-                      ) : item.id === 'gal-5' ? (
-                        <ArchitectureVisual />
-                      ) : item.id === 'gal-6' ? (
-                        <LeadershipVisual />
-                      ) : null}
-                    </div>
+                    <CardContent item={item} showVisual={true} />
                   </motion.div>
                 )
               })}
