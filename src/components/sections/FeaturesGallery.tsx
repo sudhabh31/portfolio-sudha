@@ -61,8 +61,22 @@ function CardContent({ item, showVisual }: { item: GalleryItem; showVisual: bool
 
 export default function FeaturesGallery() {
   const [activeIndex, setActiveIndex] = useState(0)
+  const [swipeDirection, setSwipeDirection] = useState(1) // 1 = forward, -1 = backward
 
   const activeItem = galleryItems[activeIndex]
+
+  const swipeThreshold = 50
+
+  const handleDragEnd = (_: unknown, info: { offset: { x: number }; velocity: { x: number } }) => {
+    const swipe = info.offset.x + info.velocity.x * 0.5
+    if (swipe < -swipeThreshold && activeIndex < galleryItems.length - 1) {
+      setSwipeDirection(1)
+      setActiveIndex(activeIndex + 1)
+    } else if (swipe > swipeThreshold && activeIndex > 0) {
+      setSwipeDirection(-1)
+      setActiveIndex(activeIndex - 1)
+    }
+  }
 
   return (
     <section id="gallery" className="px-6 py-24">
@@ -74,16 +88,20 @@ export default function FeaturesGallery() {
         />
 
         <div className="flex flex-col items-center justify-center gap-12 lg:flex-row lg:gap-16">
-          {/* Mobile: single card, auto height */}
-          <div className="w-full max-w-lg lg:hidden">
-            <AnimatePresence mode="wait">
+          {/* Mobile: swipeable card, auto height */}
+          <div className="w-full max-w-lg overflow-hidden lg:hidden">
+            <AnimatePresence mode="wait" initial={false}>
               <motion.div
                 key={activeItem.id}
-                initial={{ opacity: 0, x: 40 }}
+                initial={{ opacity: 0, x: swipeDirection * 80 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -40 }}
+                exit={{ opacity: 0, x: swipeDirection * -80 }}
                 transition={{ duration: 0.25 }}
-                className="rounded-2xl border border-border bg-surface p-5 shadow-medium"
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.3}
+                onDragEnd={handleDragEnd}
+                className="cursor-grab rounded-2xl border border-border bg-surface p-5 shadow-medium active:cursor-grabbing"
               >
                 <CardContent item={activeItem} showVisual={false} />
               </motion.div>
@@ -128,7 +146,10 @@ export default function FeaturesGallery() {
               {galleryItems.map((_, index) => (
                 <button
                   key={index}
-                  onClick={() => setActiveIndex(index)}
+                  onClick={() => {
+                    setSwipeDirection(index > activeIndex ? 1 : -1)
+                    setActiveIndex(index)
+                  }}
                   className={`h-2.5 rounded-full transition-all duration-300 ${
                     index === activeIndex
                       ? 'w-8 bg-accent'
