@@ -35,7 +35,7 @@ export default function FeaturesGallery() {
         <div className="flex flex-col items-center gap-12 lg:flex-row lg:gap-16">
           {/* Card stack */}
           <div
-            className="relative h-[400px] w-full max-w-lg flex-shrink-0"
+            className="relative h-[520px] w-full max-w-lg flex-shrink-0"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
@@ -63,14 +63,14 @@ export default function FeaturesGallery() {
                     onClick={() => setActiveIndex(index)}
                   >
                     {/* Colored accent bar */}
-                    <div className="mb-6 h-1 w-16 rounded-full bg-accent" />
+                    <div className="mb-4 h-1 w-16 rounded-full bg-accent" />
 
                     <span className="section-label mb-2 block">{item.category}</span>
                     <h3 className="mb-3 text-2xl font-bold text-text-primary">
                       {item.title}
                     </h3>
                     {item.bullets ? (
-                      <ul className="mt-1 space-y-3">
+                      <ul className="mt-1 space-y-2">
                         {item.bullets.map((b) => (
                           <li key={b.label} className="flex gap-2.5 text-sm leading-relaxed text-text-secondary">
                             <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-accent" />
