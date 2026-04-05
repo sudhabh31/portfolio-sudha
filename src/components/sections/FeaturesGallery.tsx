@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import SectionHeading from '@/components/ui/SectionHeading'
 import { galleryItems } from '@/data/gallery'
@@ -11,17 +11,6 @@ import LeadershipVisual from '@/components/visuals/LeadershipVisual'
 
 export default function FeaturesGallery() {
   const [activeIndex, setActiveIndex] = useState(0)
-  const [isHovered, setIsHovered] = useState(false)
-
-  const advance = useCallback(() => {
-    setActiveIndex((prev) => (prev + 1) % galleryItems.length)
-  }, [])
-
-  useEffect(() => {
-    if (isHovered) return
-    const interval = setInterval(advance, 8000)
-    return () => clearInterval(interval)
-  }, [isHovered, advance])
 
   return (
     <section id="gallery" className="px-6 py-24">
@@ -36,8 +25,6 @@ export default function FeaturesGallery() {
           {/* Card stack */}
           <div
             className="relative h-[520px] w-full max-w-lg flex-shrink-0"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
           >
             <AnimatePresence mode="popLayout">
               {galleryItems.map((item, index) => {

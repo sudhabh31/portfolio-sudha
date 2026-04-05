@@ -90,7 +90,7 @@ function AnalyticsIcon({ type, x, y, r }: { type: string; x: number; y: number; 
 
 export default function LeadershipVisual() {
   return (
-    <div className="mt-6 flex h-40 items-center justify-center rounded-xl bg-bg overflow-hidden">
+    <div className="mt-4 flex h-32 items-center justify-center rounded-xl bg-bg overflow-hidden">
       <svg viewBox="0 0 400 160" className="h-full w-full" xmlns="http://www.w3.org/2000/svg">
         {/* Squiggly connection lines */}
         {mentees.map((m, i) => (
