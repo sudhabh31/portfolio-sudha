@@ -2,7 +2,6 @@ import { lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Layout from '@/components/layout/Layout'
 import Home from '@/pages/Home'
-import WipBanner from '@/components/WipBanner'
 
 const PostsList = lazy(() => import('@/pages/PostsList'))
 const PostDetail = lazy(() => import('@/pages/PostDetail'))
@@ -16,8 +15,7 @@ const LazyFallback = (
 function App() {
   return (
     <BrowserRouter>
-      <WipBanner />
-      <div className="pt-10">
+      <div>
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
