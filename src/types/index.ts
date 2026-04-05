@@ -45,6 +45,7 @@ export interface GalleryItem {
   description: string
   image: string
   category: string
+  bullets?: { label: string; text: string }[]
 }
 
 export interface BlogPost {

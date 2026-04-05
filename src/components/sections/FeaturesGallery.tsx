@@ -2,6 +2,11 @@ import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import SectionHeading from '@/components/ui/SectionHeading'
 import { galleryItems } from '@/data/gallery'
+import BIDashboardVisual from '@/components/visuals/BIDashboardVisual'
+import DataPipelineVisual from '@/components/visuals/DataPipelineVisual'
+import AIAutomationVisual from '@/components/visuals/AIAutomationVisual'
+import HealthcareAnalyticsVisual from '@/components/visuals/HealthcareAnalyticsVisual'
+import ArchitectureVisual from '@/components/visuals/ArchitectureVisual'
 import LeadershipVisual from '@/components/visuals/LeadershipVisual'
 
 export default function FeaturesGallery() {
@@ -24,7 +29,7 @@ export default function FeaturesGallery() {
         <SectionHeading
           label="What I Do"
           title="Areas of Expertise"
-          subtitle="From data pipelines to executive dashboards, AI automation to team leadership."
+          subtitle="Full-stack analytics from raw data ingestion pipelines to high-fidelity BI and executive dashboards."
         />
 
         <div className="flex flex-col items-center gap-12 lg:flex-row lg:gap-16">
@@ -64,20 +69,39 @@ export default function FeaturesGallery() {
                     <h3 className="mb-3 text-2xl font-bold text-text-primary">
                       {item.title}
                     </h3>
-                    <p className="text-text-secondary leading-relaxed">
-                      {item.description}
-                    </p>
+                    {item.bullets ? (
+                      <ul className="mt-1 space-y-3">
+                        {item.bullets.map((b) => (
+                          <li key={b.label} className="flex gap-2.5 text-sm leading-relaxed text-text-secondary">
+                            <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-accent" />
+                            <span>
+                              <strong className="text-text-primary">{b.label}</strong>
+                              {' — '}
+                              {b.text}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p className="text-text-secondary leading-relaxed">
+                        {item.description}
+                      </p>
+                    )}
 
                     {/* Visual area */}
-                    {item.id === 'gal-5' ? (
+                    {item.id === 'gal-1' ? (
+                      <BIDashboardVisual />
+                    ) : item.id === 'gal-2' ? (
+                      <DataPipelineVisual />
+                    ) : item.id === 'gal-3' ? (
+                      <AIAutomationVisual />
+                    ) : item.id === 'gal-4' ? (
+                      <HealthcareAnalyticsVisual />
+                    ) : item.id === 'gal-5' ? (
+                      <ArchitectureVisual />
+                    ) : item.id === 'gal-6' ? (
                       <LeadershipVisual />
-                    ) : (
-                      <div className="mt-6 flex h-40 items-center justify-center rounded-xl bg-bg">
-                        <span className="text-sm text-text-tertiary">
-                          {item.category} Visual
-                        </span>
-                      </div>
-                    )}
+                    ) : null}
                   </motion.div>
                 )
               })}
