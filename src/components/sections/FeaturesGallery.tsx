@@ -24,7 +24,7 @@ export default function FeaturesGallery() {
         <div className="flex flex-col items-center justify-center gap-12 lg:flex-row lg:gap-16">
           {/* Card stack */}
           <div
-            className="relative h-[520px] w-full max-w-lg flex-shrink-0"
+            className="relative h-[340px] w-full max-w-lg flex-shrink-0 lg:h-[520px]"
           >
             <AnimatePresence mode="popLayout">
               {galleryItems.map((item, index) => {
@@ -46,14 +46,14 @@ export default function FeaturesGallery() {
                     }}
                     exit={{ opacity: 0, x: -300, rotateZ: -8, scale: 0.9 }}
                     transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                    className="absolute inset-0 cursor-pointer rounded-2xl border border-border bg-surface p-8 shadow-medium"
+                    className="absolute inset-0 cursor-pointer overflow-hidden rounded-2xl border border-border bg-surface p-5 shadow-medium lg:p-8"
                     onClick={() => setActiveIndex(index)}
                   >
                     {/* Colored accent bar */}
                     <div className="mb-4 h-1 w-16 rounded-full bg-accent" />
 
                     <span className="section-label mb-2 block">{item.category}</span>
-                    <h3 className="mb-3 text-2xl font-bold text-text-primary">
+                    <h3 className="mb-2 text-xl font-bold text-text-primary lg:mb-3 lg:text-2xl">
                       {item.title}
                     </h3>
                     {item.bullets ? (
@@ -75,20 +75,22 @@ export default function FeaturesGallery() {
                       </p>
                     )}
 
-                    {/* Visual area */}
-                    {item.id === 'gal-1' ? (
-                      <BIDashboardVisual />
-                    ) : item.id === 'gal-2' ? (
-                      <DataPipelineVisual />
-                    ) : item.id === 'gal-3' ? (
-                      <AIAutomationVisual />
-                    ) : item.id === 'gal-4' ? (
-                      <HealthcareAnalyticsVisual />
-                    ) : item.id === 'gal-5' ? (
-                      <ArchitectureVisual />
-                    ) : item.id === 'gal-6' ? (
-                      <LeadershipVisual />
-                    ) : null}
+                    {/* Visual area — hidden on mobile */}
+                    <div className="hidden lg:block">
+                      {item.id === 'gal-1' ? (
+                        <BIDashboardVisual />
+                      ) : item.id === 'gal-2' ? (
+                        <DataPipelineVisual />
+                      ) : item.id === 'gal-3' ? (
+                        <AIAutomationVisual />
+                      ) : item.id === 'gal-4' ? (
+                        <HealthcareAnalyticsVisual />
+                      ) : item.id === 'gal-5' ? (
+                        <ArchitectureVisual />
+                      ) : item.id === 'gal-6' ? (
+                        <LeadershipVisual />
+                      ) : null}
+                    </div>
                   </motion.div>
                 )
               })}
@@ -97,7 +99,7 @@ export default function FeaturesGallery() {
 
           {/* Navigation dots + info */}
           <div className="flex flex-1 flex-col items-center lg:items-start">
-            <div className="flex gap-3 mb-8">
+            <div className="flex gap-3 lg:mb-8">
               {galleryItems.map((_, index) => (
                 <button
                   key={index}
@@ -112,7 +114,7 @@ export default function FeaturesGallery() {
               ))}
             </div>
 
-            <div className="space-y-4">
+            <div className="hidden space-y-4 lg:block">
               {galleryItems.map((item, index) => (
                 <button
                   key={item.id}

@@ -39,7 +39,7 @@ export default function ArchitectureVisual() {
   const goldRight = BAR_X + BAR_W
 
   return (
-    <div className="mt-4 flex h-32 items-center justify-center rounded-xl bg-bg overflow-hidden">
+    <div className="mt-3 flex h-24 lg:mt-4 lg:h-32 items-center justify-center rounded-xl bg-bg overflow-hidden">
       <svg viewBox="0 0 400 160" className="h-full w-full" xmlns="http://www.w3.org/2000/svg">
         {/* Medallion layers */}
         {LAYERS.map((layer) => (

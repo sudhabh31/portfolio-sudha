@@ -17,7 +17,7 @@ const barGap = 6
 
 export default function BIDashboardVisual() {
   return (
-    <div className="mt-4 flex h-32 items-center justify-center rounded-xl bg-bg overflow-hidden">
+    <div className="mt-3 flex h-24 lg:mt-4 lg:h-32 items-center justify-center rounded-xl bg-bg overflow-hidden">
       <svg viewBox="0 0 400 160" className="h-full w-full" xmlns="http://www.w3.org/2000/svg">
         {/* Chrome bar */}
         <rect x={20} y={5} width={360} height={20} rx={4} fill={DARK} />

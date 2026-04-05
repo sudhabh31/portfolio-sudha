@@ -7,7 +7,7 @@ const DARK = '#1E293B'
 
 export default function AIAutomationVisual() {
   return (
-    <div className="mt-4 flex h-32 items-center justify-center rounded-xl bg-bg overflow-hidden">
+    <div className="mt-3 flex h-24 lg:mt-4 lg:h-32 items-center justify-center rounded-xl bg-bg overflow-hidden">
       <svg viewBox="0 0 400 160" className="h-full w-full" xmlns="http://www.w3.org/2000/svg">
         {/* ============ CHAT BUBBLE (left) ============ */}
         <rect x={20} y={30} width={110} height={40} rx={8} fill="white" stroke={ORANGE} strokeWidth={1.2} />

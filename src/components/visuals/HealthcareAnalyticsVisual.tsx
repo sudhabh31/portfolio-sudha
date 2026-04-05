@@ -6,7 +6,7 @@ const MUTED = '#94A3B8'
 
 export default function HealthcareAnalyticsVisual() {
   return (
-    <div className="mt-4 flex h-32 items-center justify-center rounded-xl bg-bg overflow-hidden">
+    <div className="mt-3 flex h-24 lg:mt-4 lg:h-32 items-center justify-center rounded-xl bg-bg overflow-hidden">
       <svg viewBox="0 0 400 160" className="h-full w-full" xmlns="http://www.w3.org/2000/svg">
         {/* === LEFT: Claims Funnel === */}
         <text x={55} y={18} textAnchor="middle" fontSize={7} fontWeight={600} fontFamily="Inter, sans-serif" fill={MUTED} letterSpacing="0.08em">
