@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { siteConfig, navItems } from '@/lib/constants'
 import { ArrowUpRight, Mail } from 'lucide-react'
+import { useContactModal } from '@/lib/ContactContext'
 
 function LinkedinIcon({ size = 18 }: { size?: number }) {
   return (
@@ -16,6 +17,8 @@ const socialLinks = [
 ]
 
 export default function Footer() {
+  const openContact = useContactModal()
+
   return (
     <footer className="border-t border-border bg-surface px-6 pt-20 pb-10">
       <div className="mx-auto max-w-7xl">
@@ -27,12 +30,12 @@ export default function Footer() {
             <br />
             <span className="text-accent">decisions.</span>
           </h2>
-          <a
-            href={`mailto:${siteConfig.email}`}
+          <button
+            onClick={openContact}
             className="inline-flex items-center gap-2 rounded-full bg-accent px-8 py-3 text-sm font-semibold text-white transition-all hover:bg-accent-hover hover:shadow-accent"
           >
             Say Hello <ArrowUpRight size={16} />
-          </a>
+          </button>
         </div>
 
         {/* Bottom row */}

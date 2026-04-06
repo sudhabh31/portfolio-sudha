@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Layout from '@/components/layout/Layout'
+import { ContactProvider } from '@/lib/ContactContext'
 import Home from '@/pages/Home'
 
 const PostsList = lazy(() => import('@/pages/PostsList'))
@@ -15,7 +16,7 @@ const LazyFallback = (
 function App() {
   return (
     <BrowserRouter>
-      <div>
+      <ContactProvider>
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
@@ -23,7 +24,7 @@ function App() {
             <Route path="/posts/:slug" element={<Suspense fallback={LazyFallback}><PostDetail /></Suspense>} />
           </Route>
         </Routes>
-      </div>
+      </ContactProvider>
     </BrowserRouter>
   )
 }

@@ -4,9 +4,11 @@ import { gsap } from 'gsap'
 import MagneticButton from '@/components/ui/MagneticButton'
 import { ArrowUpRight, ChevronDown } from 'lucide-react'
 import { siteConfig } from '@/lib/constants'
+import { useContactModal } from '@/lib/ContactContext'
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null)
+  const openContact = useContactModal()
 
   useGSAP(() => {
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
@@ -82,7 +84,7 @@ export default function Hero() {
 
           <div className="hero-cta flex flex-wrap justify-center gap-4 lg:justify-start">
             <MagneticButton
-              href={`mailto:${siteConfig.email}`}
+              onClick={openContact}
               className="bg-accent text-white hover:bg-accent-hover hover:shadow-accent"
             >
               Get in Touch <ArrowUpRight size={16} />
