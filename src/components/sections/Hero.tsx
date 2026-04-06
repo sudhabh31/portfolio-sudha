@@ -113,7 +113,6 @@ export default function Hero() {
               height={450}
               decoding="async"
               className="absolute inset-6 h-[calc(100%-48px)] w-[calc(100%-48px)] rounded-full object-cover"
-              style={{ filter: 'blur(1px)' }}
             />
           </div>
         </div>
