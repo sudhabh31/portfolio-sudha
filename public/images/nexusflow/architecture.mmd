@@ -1,0 +1,44 @@
+flowchart LR
+    subgraph gen["Data Generation"]
+        F["Faker<br/>24 months<br/>synthetic data"]
+    end
+
+    subgraph bronze["Bronze Layer"]
+        B["8 Raw Tables<br/>customers, subscriptions<br/>invoices, usage, support<br/>marketing, products, events"]
+    end
+
+    subgraph silver["Silver Layer"]
+        S["7 Clean Tables<br/>dim_customers, dim_products<br/>fact_subscriptions, invoices<br/>usage, support, marketing"]
+    end
+
+    subgraph gold["Gold Layer"]
+        G["8 KPI Tables<br/>monthly_summary, mrr_bridge<br/>cohort_retention, customer_360<br/>marketing_performance<br/>geography, data_quality"]
+    end
+
+    subgraph api["FastAPI Backend"]
+        A["22 REST Endpoints<br/>Databricks SQL Connector"]
+    end
+
+    subgraph ui["React Frontend"]
+        U["7 Interactive Modules<br/>D3.js Visualizations"]
+    end
+
+    subgraph ai["AI Layer"]
+        AI["Databricks AI/BI Genie<br/>Natural Language to SQL"]
+    end
+
+    F -->|"INSERT"| B
+    B -->|"Clean & Enrich"| S
+    S -->|"Aggregate & Score"| G
+    G -->|"SQL Queries"| A
+    A -->|"JSON"| U
+    G -->|"Schema + Metadata"| AI
+    AI -->|"Genie API"| A
+
+    style gen fill:#f0f4f8,stroke:#94a3b8
+    style bronze fill:#fef3c7,stroke:#d97706
+    style silver fill:#dbeafe,stroke:#3b82f6
+    style gold fill:#d1fae5,stroke:#10b981
+    style api fill:#ede9fe,stroke:#7c3aed
+    style ui fill:#fce7f3,stroke:#ec4899
+    style ai fill:#ccfbf1,stroke:#14b8a6

@@ -1,0 +1,45 @@
+flowchart TD
+    subgraph bronze["Bronze - Raw Ingestion"]
+        rc["raw_customers<br/>2,420 rows"]
+        rs["raw_subscriptions<br/>5,563 rows"]
+        ri["raw_invoices<br/>21,126 rows"]
+        ru["raw_usage_daily<br/>622,797 rows"]
+        rst["raw_support_tickets<br/>5,144 rows"]
+        rm["raw_marketing_events<br/>279,521 rows"]
+    end
+
+    subgraph silver["Silver - Clean & Enrich"]
+        dc["dim_customers"]
+        fs["fact_subscriptions"]
+        fi["fact_invoices"]
+        fu["fact_usage_daily"]
+        fst["fact_support_tickets"]
+        fm["fact_marketing_events"]
+    end
+
+    subgraph gold["Gold - Dashboard KPIs"]
+        kms["kpi_monthly_summary<br/>MRR, ARR, ARPU, Churn"]
+        kmb["kpi_mrr_bridge<br/>Revenue Waterfall"]
+        kcr["kpi_cohort_retention<br/>Retention Matrix"]
+        kc3["kpi_customer_360<br/>Health Scores, LTV"]
+        kmp["kpi_marketing_performance<br/>CAC, Conversion Rates"]
+        arg["agg_revenue_by_geography<br/>Country Revenue"]
+    end
+
+    rc -->|"Window func<br/>latest state"| dc
+    rs -->|"MRR calc<br/>movement classify"| fs
+    ri -->|"Dedup<br/>days-to-pay"| fi
+    ru -->|"Dedup<br/>type cast"| fu
+    rst -->|"Resolution hours<br/>satisfaction"| fst
+    rm -->|"Join campaigns<br/>funnel map"| fm
+
+    dc & fs -->|"Aggregate"| kms
+    fs -->|"Group by type"| kmb
+    dc & fs -->|"Cohort assign"| kcr
+    dc & fs & fu & fst & fi -->|"Health score<br/>risk tier"| kc3
+    fm -->|"Channel agg<br/>CAC formula"| kmp
+    dc & fs -->|"Country group"| arg
+
+    style bronze fill:#fef3c7,stroke:#d97706
+    style silver fill:#dbeafe,stroke:#3b82f6
+    style gold fill:#d1fae5,stroke:#10b981
